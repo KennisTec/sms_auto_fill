@@ -52,7 +52,10 @@ android {
         }
     }
 }
-
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+}
 flutter {
     source = "../.."
 }
