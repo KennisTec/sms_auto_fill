@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:sms_auto_fill/sms_auto_fill.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,16 +59,39 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  dynamic _code;
+  dynamic _signature;
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _asyncInit();
+  }
+
+  Future<void> _asyncInit() async {
+    // Perform your asynchronous operations here
+    _signature = await SmsAutoFill.getAppSignature();
+    print(_signature);
+    await Future.delayed(const Duration(seconds: 1));
+    _code = await SmsAutoFill.listenForOTPCode();
+    print(_code);
+    print('Async operation completed');
+    // Ensure that setState() is called if your asynchronous operation changes state
+    setState(() {
+      // Update state here if needed
+    });
+  }
+
+  @override
+  void dispose() {
+    SmsAutoFill.stopListeningForOTPCode();
+    super.dispose();
   }
 
   @override
@@ -110,6 +136,13 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const Text(
+              'OTP:',
+            ),
+            Text(
+              '$_code',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
