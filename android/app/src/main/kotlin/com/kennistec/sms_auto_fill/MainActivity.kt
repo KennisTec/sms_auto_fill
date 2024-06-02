@@ -42,7 +42,7 @@ class MainActivity : FlutterActivity() {
                             context.registerReceiver(
                                 receiver,
                                 IntentFilter(SmsRetriever.SMS_RETRIEVED_ACTION),
-                                RECEIVER_NOT_EXPORTED
+                                RECEIVER_EXPORTED
                             )
                         } else {
                             context.registerReceiver(
@@ -129,9 +129,9 @@ class MainActivity : FlutterActivity() {
                     CommonStatusCodes.SUCCESS -> {
                         // Get SMS message contents
                         sms = extras.get(SmsRetriever.EXTRA_SMS_MESSAGE) as String
-                        Toast.makeText(context, sms, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "$sms ", Toast.LENGTH_SHORT).show()
                         ignoreIllegalState {
-                            val regex = Regex("\\b\\d{6}\\b")
+                            val regex = Regex("\\b\\d{4,6}\\b")
                             val matches = regex.findAll(sms!!)
                             val result = matches.map { it.value }.toList()
                             Toast.makeText(context, result[0], Toast.LENGTH_SHORT).show()

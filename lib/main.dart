@@ -34,8 +34,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  dynamic _code;
-  dynamic _signature;
+  dynamic _code = "";
+  dynamic _signature = "";
 
   @override
   void initState() {
@@ -46,11 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> _asyncInit() async {
     _signature = await SmsAutoFill.getAppSignature();
     print(_signature);
+    setState(() {
+      _signature;
+    });
     await Future.delayed(const Duration(seconds: 1));
     _code = await SmsAutoFill.listenForOTPCode();
     print(_code);
-    print('Async operation completed');
-    setState(() {});
+    setState(() {
+      _signature;
+      _code;
+    });
   }
 
   @override
