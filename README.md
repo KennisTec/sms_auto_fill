@@ -1,12 +1,10 @@
-# sms_auto_fill
-
-A new Flutter project.
+# SMS Auto Fill
 
 ## Getting Started
 
-flutter run 
-
 To run the project
+
+flutter run 
 
 ## How to get OTP
 
