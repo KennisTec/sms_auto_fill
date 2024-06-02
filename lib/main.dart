@@ -71,6 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
+              'Signature:',
+            ),
+            Text(
+              '$_signature',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const Text(
               'OTP:',
             ),
             Text(
