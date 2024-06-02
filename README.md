@@ -4,13 +4,13 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+flutter run 
 
-A few resources to get you started if this is your first Flutter project:
+To run the project
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## How to get OTP
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+template:  123459 Android is always a sweet treat! <2j/TdA4A7E8> (applicationSignature)
+
+It will pull 123459 from the msg
+
