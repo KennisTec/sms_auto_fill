@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
@@ -128,11 +129,12 @@ class MainActivity : FlutterActivity() {
                     CommonStatusCodes.SUCCESS -> {
                         // Get SMS message contents
                         sms = extras.get(SmsRetriever.EXTRA_SMS_MESSAGE) as String
-
+                        Toast.makeText(context, sms, Toast.LENGTH_SHORT).show()
                         ignoreIllegalState {
                             val regex = Regex("\\b\\d{6}\\b")
                             val matches = regex.findAll(sms!!)
                             val result = matches.map { it.value }.toList()
+                            Toast.makeText(context, result[0], Toast.LENGTH_SHORT).show()
                             pendingResult?.success(result[0])
                         }
                     }
